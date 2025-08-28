@@ -2,16 +2,21 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
-    context : dict[str,str] = {
-        'title' : "Home",
-        'content':'Головна сторінка магазину - HOME',
-        'list': ['first', 'second'],
-        'dict' : {'first':1},
-        'is_autenticated' : False
+    context : dict[str,Any] = {
+        'title' : "Home - Головна",
+        'content' : "Магазин меблів HOME"
+
     }
 
     return render(request, 'main/index.html', context )
 
 def about(request):
-    return HttpResponse('About page')
+    context : dict[str,Any] = {
+        'title' : "Home - Про нас",
+        'content' : "Про нас",
+        'text_on_page' : " Текст про те який офігенний цей магазин, які вони красиві і який в них якісний товар"
+
+    }
+
+    return render(request, 'main/about.html', context )
 
