@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import MEDIA_ROOT, MEDIA_URL
+from django.conf.global_settings import AUTH_USER_MODEL, MEDIA_ROOT, MEDIA_URL
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -121,22 +121,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-# LOCALE_PATHS = [
-#     BASE_DIR / 'locale',
-# ]
-
 LANGUAGE_CODE = "uk"
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-# USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
+
 
 STATIC_URL = 'static/'
 
@@ -157,3 +152,4 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'users.User'
