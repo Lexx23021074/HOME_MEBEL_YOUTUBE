@@ -39,4 +39,13 @@ class Cart(models.Model):
         return round(self.product.sell_price() * self.quantity, 2)
 
     def __str__(self):
-        return f'Кошик {self.user.username} | Товар {self.product.name} | Кількість {self.quantity}'
+        if self.user:
+                    user_info = self.user.username
+        else:
+            # Для анонімних кошиків використовуємо ключ сесії або просто "Анонім"
+            user_info = f"Анонім (Session: {self.session_key})" if self.session_key else "Анонім"
+        
+        return f'Кошик {user_info} | Товар {self.product.name} | Кількість {self.quantity}'
+
+
+
