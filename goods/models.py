@@ -1,8 +1,7 @@
 from unicodedata import category
 from django.db import models
+from django.urls import reverse
 
-
-# Create your models here.
 class Categories(models.Model):
     name = models.CharField(max_length=150, unique = True, verbose_name='Найменування')
     slug =models.SlugField(max_length=200, unique= True, blank=True, null=True, verbose_name='URL')
@@ -14,7 +13,7 @@ class Categories(models.Model):
     
     def __str__ (self):
         return self.name 
-        
+
 
 class Products(models.Model):
     name = models.CharField(max_length=150, unique = True, verbose_name='Найменування')
@@ -35,6 +34,10 @@ class Products(models.Model):
 
     def __str__ (self):
         return f'{self.name} Кількість - {self.quantity}'
+    
+    def get_absolute_url(self):
+        return reverse("catalog:product", kwargs={"product_slug": self.slug})
+    
     
     def display_id(self):
         return f"{self.id:05}"
