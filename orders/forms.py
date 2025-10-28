@@ -1,3 +1,4 @@
+import re
 from django import forms
 
 
@@ -20,6 +21,17 @@ class CreateOrderForm(forms.Form):
 
 
 
+    def clean_phone_number(self):
+        data = self.cleaned_data['phone_number']
+
+        if not data.isdigit():
+            raise forms.ValidationError("Номер телефону повинен складатись тільки з цифр")
+        
+        pattern = re.compile(r'^\d{10}$')
+        if not pattern.match(data):
+            raise forms.ValidationError("Невірний формат номера")
+
+        return data
 
 
 
